@@ -1,2 +1,2 @@
 # Q-android
-Asynchronous promise implementation for iOS.
+Asynchronous promise implementation for Android.
