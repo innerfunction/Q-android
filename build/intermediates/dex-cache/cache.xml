@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/javier/workspace/git/Q-android/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-core/2.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="25a72389e79fbac13f78412a4a6ffacc1cdb0673">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test.espresso-espresso-core-2.2.1_69f0d2e2b359e84733b9adf703e0a22ab92912d9.jar" />
+    </item>
+    <item
+        jar="/Users/javier/workspace/git/Q-android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.1_88bc7aa21d7e898eb254c497c7671f2a301e546d.jar" />
+    </item>
+    <item
+        jar="/Users/javier/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4785a3c21320980282f9f33d0d1264a69040538f/hamcrest-library-1.3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4785a3c21320980282f9f33d0d1264a69040538f">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/androidTest/debug/hamcrest-library-1.3_77a7069ee8d55a3427f8cf5e9bc8ab762ab5b673.jar" />
+    </item>
+    <item
+        jar="/Users/javier/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/androidTest/debug/jsr305-2.0.1_df33737b10f81f6ee4756cc0596fcd4e9fcfb5f0.jar" />
+    </item>
+    <item
+        jar="/Users/javier/workspace/git/Q-android/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-idling-resource/2.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="83e81537012f1975aa902eedbdb8da5aa515aea5">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test.espresso-espresso-idling-resource-2.2.1_eec06872cb613431473468131a36da6635c8cae5.jar" />
+    </item>
+    <item
+        jar="/Users/javier/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-integration/1.3/5de0c73fef18917cd85d0ab70bb23818685e4dfd/hamcrest-integration-1.3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5de0c73fef18917cd85d0ab70bb23818685e4dfd">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/androidTest/debug/hamcrest-integration-1.3_132fb4ffc80bd586000a332ae5c7842a36a2bf51.jar" />
+    </item>
+    <item
+        jar="/Users/javier/workspace/git/Q-android/build/intermediates/exploded-aar/Q-android/q-library/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e6cfc31734c376b4ed785674e2592eab5e17eb3c">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/debug/Q-android-q-library-unspecified_7d84d30acd47983d42b027831db34260c6051033.jar" />
+    </item>
+    <item
+        jar="/Users/javier/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/androidTest/debug/javax.inject-1_030d862147fb60a3712ff6cb5a7a03cef8a6e4cd.jar" />
+    </item>
+    <item
+        jar="/Users/javier/workspace/git/Q-android/build/intermediates/exploded-aar/com.android.support.test/runner/0.4.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f607369e68cb756b3f8f523403e3d80433a68aa1">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test-runner-0.4.1_503fdab4f49bb65acd55049f43eb99d97780baf9.jar" />
+    </item>
+    <item
+        jar="/Users/javier/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/androidTest/debug/junit-4.12_fdd030b0a2fd582e6477ccaeb1ce6f54bbb91e7c.jar" />
+    </item>
+    <item
+        jar="/Users/javier/workspace/git/Q-android/build/intermediates/exploded-aar/com.android.support.test/exposed-instrumentation-api-publish/0.4.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e1d90a3498ab7a4b68ea6e936e71cf7f4e95453f">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test-exposed-instrumentation-api-publish-0.4.1_5bf7b82088fd86acea5de3dfae033a7e9f739fc1.jar" />
+    </item>
+    <item
+        jar="/Users/javier/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="479c1e06db31c432330183f5cae684163f186146">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/androidTest/debug/javax.annotation-api-1.2_7676c2cf0b177f4cb656290c47fd52b67ffa3e4b.jar" />
+    </item>
+    <item
+        jar="/Users/javier/workspace/git/Q-android/build/intermediates/exploded-aar/com.android.support.test/rules/0.4.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e4805433aedef15e73a7eedf7e3496eb4363a583">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test-rules-0.4.1_222e94ce2e1d6cccd73e8b67ff0ae207a6e44cf1.jar" />
+    </item>
+    <item
+        jar="/Users/javier/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/androidTest/debug/hamcrest-core-1.3_c129842b7a6e0bec20e02a7c29f9c96bcc22a083.jar" />
+    </item>
+    <item
+        jar="/Users/javier/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.1.1/67ff45d9ae02e583d0f9b3432a5ebbe05c30c966/javawriter-2.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="67ff45d9ae02e583d0f9b3432a5ebbe05c30c966">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/androidTest/debug/javawriter-2.1.1_4c8e5d2088af303a65830002cec58f877b49e6f3.jar" />
+    </item>
+    <item
+        jar="/opt/android-sdks/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_f031071cd7ce45ff49868a1a00bbc34228138fef.jar" />
+    </item>
+    <item
+        jar="/Users/javier/workspace/git/Q-android/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_c8d5fff2dfee71237f2e5c7c26422562f4aaf5cc.jar" />
+    </item>
+    <item
+        jar="/Users/javier/workspace/git/Q-android/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/javier/workspace/git/Q-android/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_efbf236e6388501b2b3e2e9930620eca6b9b1899.jar" />
+    </item>
+
+</items>
