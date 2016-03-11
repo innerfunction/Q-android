@@ -2,6 +2,8 @@ package q.innerfunction.com.q;
 
 import org.junit.Test;
 
+import java.lang.Boolean;
+
 import q.innerfunction.com.Deferred;
 
 import static junit.framework.Assert.assertNotNull;
@@ -27,15 +29,15 @@ public class DeferredUnitTest {
 
     @Test
     public void testDefered_resolved(){
-        Deferred<Boolean> initialDeferred = new Deferred<>();
-        initialDeferred.resolve(true);
+        Deferred<Boolean> deferred= new Deferred<>();
+        deferred.resolve(true);
 
-        initialDeferred
-            .then(new Deferred.AsyncCallback<Boolean, Void>() {
+        deferred
+            .then(new Deferred.Callback<Boolean, Void>() {
                 @Override
-                public Deferred<Void> result(Boolean result) {
+                public Deferred<Boolean> result(Boolean result) {
                     assertTrue(result);
-                    return null;
+                    return result;
                 }
             })
             .error(new Deferred.ErrorCallback() {
@@ -48,15 +50,15 @@ public class DeferredUnitTest {
 
     @Test
     public void testDeferredError(){
-        Deferred<Boolean> initialDeferred = new Deferred<>();
-        initialDeferred.reject("error");
+        Deferred<Boolean> deferred = new Deferred<>();
+        deferred.reject("error");
 
-        initialDeferred
-            .then(new Deferred.AsyncCallback<Boolean, Void>() {
+        deferred
+            .then(new Deferred.Callback<Boolean, Void>() {
                       @Override
-                      public Deferred<Void> result(Boolean result) {
+                      public Deferred<Boolean> result(Boolean result) {
                           fail();
-                          return null;
+                          return result();
                       }
                   }
             )
