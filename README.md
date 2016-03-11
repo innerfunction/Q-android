@@ -30,15 +30,10 @@ More about [JS Promises:](https://developer.mozilla.org/en-US/docs/Mozilla/JavaS
 ````
 
 ## API
-The Promise exposes only the Deferred methods needed to attach additional handlers or determine the state:
-* then:
-* error
-and the ones to change the state:
-* resolve
-* reject
+The Promise exposes only the Deferred methods needed to attach additional handlers or determine the state: *then*, *error* and the ones to change the state: *resolve*, *reject*
 
 ## Use cases
-
+Promises became utils when using in conjunction with function which return Promises. This way it's easier to control process and is cleaner to calls to async methods. 
 
 
 ## Notes
