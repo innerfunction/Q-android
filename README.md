@@ -1,18 +1,46 @@
-# Q-android: Asynchronous promise implementation for Android.
+# Q-android: Asynchronous Promise implementation for Android.
 
-This library brings the concept of deferred promises from JS to Android. 
+This library brings the concept of deferred promises from the JS world to Android.  
 
-More about JS Promises: https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#Constructor
+Promises allow to run asynchronous functions to prevent other code from interfering with the progress or status of its internal request.
 
-Promises are useful when making asyc calls in your code.
+Promises are useful when you want to make async calls in your code which may be rejected, and also as a way to write more readable code.
 
-See next example:
+More about [JS Promises:](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#Constructor)
+
+## Usage
+
+```java
+
+Deferred<Boolean> deferred= new Deferred<>();
+deferred.resolve(true);
+        
+deferred
+    .then(new Deferred.Callback<Boolean, Void>() {
+        @Override
+        public Deferred<Boolean> result(Boolean result) {
+            assertTrue(result);
+            return result;
+        }
+    })
+    .error(new Deferred.ErrorCallback() {
+        @Override
+        public void error(Exception e) {
+            //fail();
+        }
+    });
+````
+
+## API
+The Promise exposes only the Deferred methods needed to attach additional handlers or determine the state: *then*, *error* and the ones to change the state: *resolve*, *reject*
+
+## Use cases
+Promises became utils when using in conjunction with function which return Promises. This way it's easier to control process and is cleaner to calls to async methods. 
 
 
-
-Documentation needs to be the following:
+## Notes
+Documentation includes the following:
 * high level overview of usage
 * detailed description of api usage
 * api docs
 * and maybe something on use cases
-
