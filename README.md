@@ -11,20 +11,24 @@ More about [JS Promises:](https://developer.mozilla.org/en-US/docs/Mozilla/JavaS
 ## Usage
 
 ```java
-        deferred
-            .then(new Deferred.Callback<Boolean, Void>() {
-                @Override
-                public Deferred<Boolean> result(Boolean result) {
-                    assertTrue(result);
-                    return result;
-                }
-            })
-            .error(new Deferred.ErrorCallback() {
-                @Override
-                public void error(Exception e) {
-                    //fail();
-                }
-            });
+
+Deferred<Boolean> deferred= new Deferred<>();
+deferred.resolve(true);
+        
+deferred
+    .then(new Deferred.Callback<Boolean, Void>() {
+        @Override
+        public Deferred<Boolean> result(Boolean result) {
+            assertTrue(result);
+            return result;
+        }
+    })
+    .error(new Deferred.ErrorCallback() {
+        @Override
+        public void error(Exception e) {
+            //fail();
+        }
+    });
 ````
 
 ## API
