@@ -1,4 +1,4 @@
-package q.innerfunction.com.q;
+package q.innerfunction.com.test;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -8,45 +8,65 @@ import android.test.AndroidTestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.concurrent.Semaphore;
-
 import q.innerfunction.com.BackgroundTaskRunner;
 import q.innerfunction.com.Deferred;
+import q.innerfunction.com.q.testutils.Animal;
 
 @RunWith(AndroidJUnit4.class)
 public class AsyncTest extends AndroidTestCase{
     String testString = "teststring";
-    Semaphore semaphore;
     Deferred<String> deferredString;
+    Deferred<Object> deferredObject;
 
     @Test
-    public void testAsyncResolve() throws InterruptedException {
-        semaphore = new Semaphore(1);
+    public void testResolveAsync() throws InterruptedException {
         deferredString = new Deferred<String>();
-
         deferredString.then(new Deferred.Callback<String, Object>() {
             @Override
             public String result(String result) {
                 assertEquals(result, testString);
-                semaphore.release();
                 return result;
             }
         });
 
+        // resolve the promise asyc
         Looper.prepare();
         new Handler().postDelayed(
                 new Runnable() {
                     @Override
                     public void run() {
-                        System.out.print("run!!!");
-                        semaphore.release();
                         deferredString.resolve(testString);
                         Looper.myLooper().quit();
                     }
                 }
                 , 300);
         Looper.loop();
-        semaphore.acquire();
+    }
+
+    @Test
+    public void testAnimal() {
+        deferredObject = new Deferred<Object>();
+        final Animal monkey = new Animal();
+        monkey.setName("Name");
+
+        deferredObject.then(new Deferred.Callback<Object, Object>() {
+            @Override
+            public Object result(Object result) {
+                assertSame(monkey, (Animal) result);
+                assertEquals(monkey.getName(), ((Animal) result).getName());
+                return result;
+            }
+        });
+
+        Looper.prepare();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                deferredObject.resolve(monkey);
+                Looper.myLooper().quit();
+            }
+        }, 200);
+        Looper.loop();
     }
 
     // TODO: Review

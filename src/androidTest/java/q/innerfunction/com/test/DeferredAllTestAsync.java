@@ -1,10 +1,12 @@
-package q.innerfunction.com.q;
+package q.innerfunction.com.test;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.AndroidTestCase;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class DeferredAllTestAsync extends AndroidTestCase {
     ArrayList<Boolean> expectedresult;
     Semaphore semaphore;
 
+    @Before
     public void setUp() throws Exception {
         expectedresult= new ArrayList<Boolean>();
         expectedresult.add(true);
@@ -34,6 +37,8 @@ public class DeferredAllTestAsync extends AndroidTestCase {
     public Deferred<Boolean> promise3() {
         return Deferred.defer( null );
     }
+
+    @Test
     public void testDeferredALL() throws InterruptedException {
         final List<Deferred<Boolean>> deferreds = new ArrayList<Deferred<Boolean>>();
         deferreds.add(promise1());
@@ -41,19 +46,19 @@ public class DeferredAllTestAsync extends AndroidTestCase {
         deferreds.add(promise3());
 
         semaphore = new Semaphore(1);
-
+        
         final Deferred<Boolean> deferred = new Deferred<Boolean>();
 
         Deferred.all( deferreds )
-        .then(new Deferred.AsyncCallback<List<Boolean>, Object>() {
-            @Override
-            public Deferred<Object> result(List<Boolean> result) {
-                assertEquals(expectedresult, result);
-                semaphore.release();
-                // return result;
-                return null;
-            }
-        });
+            .then(new Deferred.AsyncCallback<List<Boolean>, Object>() {
+                @Override
+                public Deferred<Object> result(List<Boolean> result) {
+                    assertEquals(expectedresult, result);
+                    semaphore.release();
+                    // return result;
+                    return null;
+                }
+            });
 
         Looper.prepare();
         new Handler().postDelayed(new Runnable() {

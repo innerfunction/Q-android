@@ -1,8 +1,9 @@
-package q.innerfunction.com.q;
+package q.innerfunction.com.test;
 
 import org.junit.Test;
 
 import java.lang.Boolean;
+import java.util.Objects;
 
 import q.innerfunction.com.Deferred;
 
@@ -33,9 +34,9 @@ public class DeferredUnitTest {
         deferred.resolve(true);
 
         deferred
-            .then(new Deferred.Callback<Boolean, Void>() {
+            .then(new Deferred.Callback<Boolean, Object>() {
                 @Override
-                public Deferred<Boolean> result(Boolean result) {
+                public Boolean result(Boolean result) {
                     assertTrue(result);
                     return result;
                 }
@@ -54,11 +55,11 @@ public class DeferredUnitTest {
         deferred.reject("error");
 
         deferred
-            .then(new Deferred.Callback<Boolean, Void>() {
+            .then(new Deferred.Callback<Boolean, Object>() {
                       @Override
-                      public Deferred<Boolean> result(Boolean result) {
+                      public Boolean result(Boolean result) {
                           fail();
-                          return result();
+                          return result;
                       }
                   }
             )

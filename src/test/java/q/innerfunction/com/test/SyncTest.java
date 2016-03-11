@@ -1,4 +1,4 @@
-package q.innerfunction.com.q;
+package q.innerfunction.com.test;
 
 import org.junit.Before;
 import org.junit.Test;

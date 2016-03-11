@@ -1,4 +1,4 @@
-package q.innerfunction.com.q;
+package q.innerfunction.com.test;
 
 import android.test.AndroidTestCase;
 
@@ -28,9 +28,7 @@ public class DeferredAllTest {
     public Deferred<Boolean> promise2() {
         return Deferred.defer( false );
     }
-    public Deferred<Boolean> promise3() {
-        return Deferred.defer( null );
-    }
+    public Deferred<Boolean> promise3() { return Deferred.defer( null );}
 
     @Test
     public void testDeferredALL() {
@@ -40,16 +38,24 @@ public class DeferredAllTest {
         deferreds.add(promise3());
 
         final Deferred<Boolean> deferred = new Deferred<Boolean>();
-        Deferred.all( deferreds )
-        .then(new Deferred.Callback<List<Boolean>, Object>() {
+        deferred.then(new Deferred.Callback<Boolean, Object>() {
             @Override
-            public Object result(List<Boolean> result) {
-                deferred.resolve( true );
-                Assert.assertEquals(expectedresult, result);
-                return null;
+            public Object result(Boolean result) {
+                Assert.assertTrue(result);
+                return true;
             }
         });
+
+
+        Deferred.all( deferreds )
+            .then(new Deferred.Callback<List<Boolean>, Object>() {
+                @Override
+                public Object result(List<Boolean> result) {
+                    Assert.assertEquals(expectedresult, result);
+                    deferred.resolve(true);
+                    return null;
+                }
+            });
     };
                
-
 }

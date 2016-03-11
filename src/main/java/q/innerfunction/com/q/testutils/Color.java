@@ -1,4 +1,4 @@
-package q.innerfunction.com.test.utils;
+package q.innerfunction.com.q.testutils;
 
 import android.content.Context;
 
