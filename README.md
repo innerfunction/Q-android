@@ -16,7 +16,7 @@ Documentation includes the following:
 
 # Usage
 ```java
-         Deferred<Boolean> deferred= new Deferred<>();
+        Deferred<Boolean> deferred= new Deferred<>();
         deferred.resolve(true);
 
         deferred
@@ -32,7 +32,7 @@ Documentation includes the following:
                 public void error(Exception e) {
                     //fail();
                 }
-            });
+
 ````
 
 # API
