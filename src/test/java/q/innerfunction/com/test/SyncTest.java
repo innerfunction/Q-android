@@ -53,6 +53,7 @@ public class SyncTest {
 
     public void testReturnNull() {
         deferredObject.resolve(null);
+
         deferredObject.then(new Deferred.Callback<Object, Object>() {
             @Override
             public Object result(Object result) {
