@@ -1,1 +1,1 @@
-include ':q-test-app'
+include ':q-library'

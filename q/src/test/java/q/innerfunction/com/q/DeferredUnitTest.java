@@ -1,11 +1,8 @@
 package q.innerfunction.com.q;
 
-import android.os.Handler;
-
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import q.innerfunction.com.Deferred;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.*;
