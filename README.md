@@ -8,13 +8,7 @@ Promises are useful when you want to make async calls in your code which may be 
 
 More about [JS Promises:](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#Constructor)
 
-Documentation includes the following:
-* high level overview of usage
-* detailed description of api usage
-* api docs
-* and maybe something on use cases
-
-# Usage
+## Usage
 ```java
         Deferred<Boolean> deferred= new Deferred<>();
         deferred.resolve(true);
@@ -35,10 +29,21 @@ Documentation includes the following:
 
 ````
 
-# API
+## API
 The Promise exposes only the Deferred methods needed to attach additional handlers or determine the state:
-* then
-* done
-* fails
-* 
+* then:
+* error
+and the ones to change the state:
+* resolve
+* reject
 
+## Use cases
+
+
+
+## Notes
+Documentation includes the following:
+* high level overview of usage
+* detailed description of api usage
+* api docs
+* and maybe something on use cases
