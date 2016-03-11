@@ -1,12 +1,12 @@
-# Q-android: Asynchronous Promise implementation for Android.
+# Q-android: 
 
-This library brings the concept of deferred promises from the JS world to Android.  
+Q-android is a Asynchronous Promise implementation for Android.
 
-Promises allow to run asynchronous functions to prevent other code from interfering with the progress or status of its internal request.
+This library brings the concept of [JS Promises](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#Constructor) to Android. It's similar to the [DeferredObject in jQuery](http://api.jquery.com/category/deferred-object/)
 
-Promises are useful when you want to make async calls in your code which may be rejected, and also as a way to write more readable code.
+A Defered is a chainable utility object which can resgister multiple callbacks into callbacks queues, invoque callbacks queues, and relay the success or failure statete of any aysnc or async function. It's imilar to the [Android Deferred Object](https://github.com/CodeAndMagic/android-deferred-object)
 
-More about [JS Promises:](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#Constructor)
+Defered allow to run asynchronous functions with callbacks preventing other code from interfering with the progress or status of its internal request. You have access to actual *resolve* and *reject* methods which is usedul when you wnat to write your own Deferred.
 
 ## Usage
 
