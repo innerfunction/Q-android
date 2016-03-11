@@ -9,16 +9,14 @@ Promises are useful when you want to make async calls in your code which may be 
 More about [JS Promises:](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#Constructor)
 
 ## Usage
-```java
-        Deferred<Boolean> deferred= new Deferred<>();
-        deferred.resolve(true);
 
+```java
         deferred
-            .then(new Deferred.AsyncCallback<Boolean, Void>() {
+            .then(new Deferred.Callback<Boolean, Void>() {
                 @Override
-                public Deferred<Void> result(Boolean result) {
+                public Deferred<Boolean> result(Boolean result) {
                     assertTrue(result);
-                    return null;
+                    return result;
                 }
             })
             .error(new Deferred.ErrorCallback() {
@@ -26,7 +24,7 @@ More about [JS Promises:](https://developer.mozilla.org/en-US/docs/Mozilla/JavaS
                 public void error(Exception e) {
                     //fail();
                 }
-
+            });
 ````
 
 ## API
