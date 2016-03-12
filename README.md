@@ -98,8 +98,12 @@ You can find more examples about operations in the [Q test cases](https://github
 * Deferred.AsyncCallback: Callback for passing a deferred promise result with an asynchronous chained result. The result method returns a Deferred.
 * Deferred.ErrorCallback: Callback for passing a deferred promise error. 
 
-## Use cases
-Promises became utils when using in conjunction with function which return promises to control async process and write cleaner calls to async methods. 
+## Advantages and Use cases
+Promises became more useful when defining function which return other promises. They help to:
+* controler process flow with async calls.
+* write cleaner calls to async methods. 
+* manage error messages over a number of operations.
+* multiplatform: Port for iOS.
 
 
 
