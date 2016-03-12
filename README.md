@@ -27,15 +27,19 @@ deferred
     .error(new Deferred.ErrorCallback() {
         @Override
         public void error(Exception e) {
-            //fail();
+            fail();
         }
     });
 ```
-After that you can resolve or reject your Deferred:
+After that you can resolve or reject your Deferred, this is usefull when you want to resolve a deferred in an async call where you need to overwrite methods [TODO: add link to example]
 ```java
-deferred.resolve(true)
+if (error != null) {
+    defered.reject("error msg");
+}else{
+    deferred.resolve(true);
+}
 ```
-When the resolve method is called the deferred will be resolved passing the value "true" as the result param in the result callback, so the assert will be true.
+If an "error" is not null then the promise is rejected, which implies the error() method in the deferred gets call. If there is no error and the resolve method is called then the deferred will be resolved passing the value "true" as the result param in the result callback, so the assert will be true.
 
 ## API
 The Promise exposes only the Deferred methods needed to attach additional handlers or determine the state: *then*, *error* and the ones to change the state: *resolve*, *reject*:
@@ -44,22 +48,40 @@ The Promise exposes only the Deferred methods needed to attach additional handle
 * resolve()
 * reject()
 
-Static methods:
+### then() continuations
+Using *then* we can chain promises, usefull to run secuantially async operations:
+```java
+    public Deferred<Boolean> promise1() {
+        return Deferred.defer( true );
+    }
+    public Deferred<Boolean> promise2() {
+        return Deferred.defer( false );
+    }
+    public Deferred<Boolean> promise3() { 
+        return Deferred.defer( null );
+    }
+    promise1()
+        .then((Deferred.ICallback<Boolean, Object>) promise2())
+        .then((Deferred.ICallback<Object, Object>) promise3());    
+````
+The promise2 won't be resolved until promise1 has finished. promise3 won't be resolved until promise2 has finished.
+
+This opens a lot of options on operations on Defered, like for example build lists of promises and resolve them in different ways. You can find more examples about operations in the [Q test cases](https://github.com/innerfunction/Q-android/tree/master/src/androidTest/java/q/innerfunction/com/test)
+
+### Static methods:
 * Defered.defer(): 
 * Defered.all()
 
-Callbacks Objects:
-* Defered.ICallback: interface
-* Defered.Callback
-* Defered.AsyncCallback
-* Defered.ErrorCallback
+### Callbacks objects:
+* Deferred.ICallback: This is the main Interface.
+* Deferred.Callback: Callback for passing a deferred promise result.
+* Deferred.AsyncCallback: Callback for passing a deferred promise result with an asynchronous chained result. The result method returns a Deferred.
+* Deferred.ErrorCallback: Callback for passing a deferred promise error. 
 
 ## Use cases
 Promises became utils when using in conjunction with function which return promises to control async process and write cleaner calls to async methods. 
 
-Async callbacks
 
-Examples in git:
 
 ## Notes
 Documentation includes the following:
