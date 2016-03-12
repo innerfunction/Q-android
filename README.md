@@ -46,13 +46,13 @@ In the code above if an "error" occurs and the promise is rejected then the erro
 The Promise exposes only the Deferred methods needed to attach additional handlers or determine the state: *then*, *error* and the ones to change the state: *resolve*, *reject*:
 
 ### Main API methods
-* then( callback )
-* error( callback )
+* then( callback/promise )
+* error( callback/promise )
 * resolve( value )
 * reject( value )
 
-#### then() ontinuations
-Using *then* we can chain promises, usefull to run secuantially async operations:
+#### then()
+Using *then* we to chain promises or define callbacks. It's useful to run define secuential process with async calls. e.g. Promise1 -> Promise2 -> Promise3. See example: 
 ```java
     public Deferred<Boolean> promise1() {
         return Deferred.defer( true );
