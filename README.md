@@ -33,13 +33,14 @@ deferred
 ```
 After that you can resolve or reject your Deferred, this is usefull when you want to resolve a deferred in an async call where you need to overwrite methods [TODO: add link to example]
 ```java
+// e.g. after an async operation
 if (error != null) {
     defered.reject("error msg");
 }else{
     deferred.resolve(true);
 }
 ```
-If an "error" is not null then the promise is rejected, which implies the error() method in the deferred gets call. If there is no error and the resolve method is called then the deferred will be resolved passing the value "true" as the result param in the result callback, so the assert will be true.
+If an "error" occures and the promise is rejected then the error() method in the Deferred gets call. If no error and the resolve method is called then the deferred will be resolved passing the value "true" as the result param in the result callback, so the assert will be true.
 
 ## API
 The Promise exposes only the Deferred methods needed to attach additional handlers or determine the state: *then*, *error* and the ones to change the state: *resolve*, *reject*:
