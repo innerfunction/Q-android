@@ -31,7 +31,7 @@ deferred
         }
     });
 ```
-After that you can resolve or reject your Deferred, this is usefull when you want to resolve a deferred in an async call where you need to overwrite methods [TODO: add link to example]
+After that you can resolve or reject your Deferred, this is usefull when you want to resolve a deferred in an async call where you need to overwrite methods:
 ```java
 // e.g. after an async operation
 if (error != null) {
@@ -64,10 +64,35 @@ Using *then* we can chain promises, usefull to run secuantially async operations
     promise1()
         .then((Deferred.ICallback<Boolean, Object>) promise2())
         .then((Deferred.ICallback<Object, Object>) promise3());    
-````
+```
 The promise2 won't be resolved until promise1 has finished. promise3 won't be resolved until promise2 has finished.
 
-This opens a lot of options on operations on Defered, like for example build lists of promises and resolve them in different ways. You can find more examples about operations in the [Q test cases](https://github.com/innerfunction/Q-android/tree/master/src/androidTest/java/q/innerfunction/com/test)
+This opens a lot of options on operations on Defered, like for example build a lists of promises and use the Deferred.app() method to resolve them, see an example:
+```java
+   public Deferred<Boolean> promise1() {
+        return Deferred.defer( true );
+    }
+    public Deferred<Boolean> promise2() {
+        return Deferred.defer( false );
+    }
+    public Deferred<Boolean> promise3() {
+        return Deferred.defer( null );
+    }
+    final List<Deferred<Boolean>> deferreds = new ArrayList<Deferred<Boolean>>();
+    deferreds.add(promise1());
+    deferreds.add(promise2());
+    deferreds.add(promise3());
+    Deferred.all( deferreds )
+            .then(new Deferred.AsyncCallback<List<Boolean>, Object>() {
+                @Override
+                public Deferred<Object> result(List<Boolean> result) {
+                    assertEquals(expectedresult, result);
+                    return null;
+                }
+            });
+```
+
+You can find more examples about operations in the [Q test cases](https://github.com/innerfunction/Q-android/tree/master/src/androidTest/java/q/innerfunction/com/test)
 
 ### Static methods:
 * Defered.defer(): 
