@@ -51,8 +51,24 @@ The Promise exposes only the Deferred methods needed to attach additional handle
 * resolve( value )
 * reject( value )
 
+Static methods:
+* Defered.defer(): 
+* Defered.all()
+
+Callbacks objects:
+* Deferred.ICallback: This is the main Interface.
+* Deferred.Callback: Callback for passing a deferred promise result.
+* Deferred.AsyncCallback: Callback for passing a deferred promise result with an asynchronous chained result. The result method returns a Deferred.
+* Deferred.ErrorCallback: Callback for passing a deferred promise error. 
+
+#### resolve()
+Resolve the promise by passing a deferred result or deferred result.
+
+#### reject()
+Reject the promise by passing an error.
+
 #### then()
-Using *then* we to chain promises or define callbacks. It's useful to run define secuential process with async calls. e.g. Promise1 -> Promise2 -> Promise3. See example: 
+Add a promise result callback. It's useful to run define secuential process with async calls. e.g. Promise1 -> Promise2 -> Promise3. See example: 
 ```java
     public Deferred<Boolean> promise1() {
         return Deferred.defer( true );
@@ -68,6 +84,9 @@ Using *then* we to chain promises or define callbacks. It's useful to run define
         .then((Deferred.ICallback<Object, Object>) promise3());    
 ```
 The promise2 won't be resolved until promise1 has finished. promise3 won't be resolved until promise2 has finished.
+
+#### error()
+Add a promise reject callback.
 
 #### Deferred.all()
 This opens a lot of options on operations on Defered, like for example build a lists of promises and use the Deferred.app() method to resolve them, see an example:
@@ -88,23 +107,14 @@ This opens a lot of options on operations on Defered, like for example build a l
 
 You can find more examples about operations in the [Q test cases](https://github.com/innerfunction/Q-android/tree/master/src/androidTest/java/q/innerfunction/com/test)
 
-### Static methods:
-* Defered.defer(): 
-* Defered.all()
-
-### Callbacks objects:
-* Deferred.ICallback: This is the main Interface.
-* Deferred.Callback: Callback for passing a deferred promise result.
-* Deferred.AsyncCallback: Callback for passing a deferred promise result with an asynchronous chained result. The result method returns a Deferred.
-* Deferred.ErrorCallback: Callback for passing a deferred promise error. 
-
-## Advantages and Use cases
-Promises became more useful when defining function which return other promises. They help to:
+## Advantages
+Promises became useful when defining function which return other promises. They help to:
 * controler process flow with async calls.
 * write cleaner calls to async methods. 
 * manage error messages over a number of operations.
 * multiplatform: Port for iOS.
 
+ ## Use cases
 
 
 ## Notes
