@@ -11,18 +11,39 @@ import q.innerfunction.com.Deferred;
  */
 public class SampleOne extends AndroidTestCase{
 
+    Boolean error, success;
+
     public class Controller {
+
+        // Resolve or reject promises in async calls
+        // create a deferred
+        //   if you want to show error call: reject()
+        //   if you want to resolve the promise call: resolve()
         public Deferred makeAsyncCall(){
-            // Here make another sync call
             Deferred deferred  = new Deferred();
-            deferred.resolve(true);
+            // Make async call and when success or error
+            if ( success ){
+                deferred.resolve(true);
+                // This resolve could also be another Deferred
+            } else if (error){
+                deferred.reject("error");
+            }
             return deferred;
         }
+        // Returning another defered
         public Deferred getDetailsFromDB(){
-            // create a deferred
-            //   if you want to show error call: reject()
-            //   if you want to resolve the promise call: resolve()
-            return Deferred.defer(true);
+            Deferred deferred  = new Deferred();
+            final Deferred<Boolean> asyncDefer = makeAsyncCall();
+
+            deferred.then(new Deferred.Callback() {
+                @Override
+                public Object result(Object result) {
+                    // DO SOMETHING
+                    asyncDefer.resolve(true);
+                    return null;
+                }
+            });
+            return deferred;
         };
         public Deferred getImageFromLibrary(){
             return Deferred.defer(true);
@@ -58,17 +79,27 @@ public class SampleOne extends AndroidTestCase{
                 //report the error
             }
         });
-
         // Resolve a number of promises
 
+    }
 
+    @Test
+    public void exampleBasic1(){
+        // Instantiate a deferred
+        Deferred<Boolean> deferred = new Deferred<Boolean>();
 
+        Deferred.ICallback callback = new Deferred.Callback() {
+            @Override
+            public Object result(Object result) {
+                return null;
+            }
+        };
 
+        deferred.then(callback);
 
 
 
     }
-
 
 
 

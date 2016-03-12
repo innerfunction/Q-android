@@ -28,7 +28,9 @@ public class DeferredAllTest {
     public Deferred<Boolean> promise2() {
         return Deferred.defer( false );
     }
-    public Deferred<Boolean> promise3() { return Deferred.defer( null );}
+    public Deferred<Boolean> promise3() {
+        return Deferred.defer( null );
+    }
 
     @Test
     public void testDeferredALL() {
@@ -36,6 +38,10 @@ public class DeferredAllTest {
         deferreds.add(promise1());
         deferreds.add(promise2());
         deferreds.add(promise3());
+
+        promise1()
+            .then((Deferred.ICallback<Boolean, Object>) promise2())
+            .then((Deferred.ICallback<Object, Object>) promise3());
 
         final Deferred<Boolean> deferred = new Deferred<Boolean>();
         deferred.then(new Deferred.Callback<Boolean, Object>() {

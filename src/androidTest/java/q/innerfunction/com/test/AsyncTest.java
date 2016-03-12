@@ -34,8 +34,8 @@ public class AsyncTest extends AndroidTestCase{
         new Handler().postDelayed( new Runnable() {
                     @Override
                     public void run() {
-                        deferredString.resolve(testString);
-                        Looper.myLooper().quit();
+                    deferredString.resolve(testString);
+                    Looper.myLooper().quit();
                     }
                 }
                 , 300);
