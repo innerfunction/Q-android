@@ -10,11 +10,12 @@ Defered allow to run asynchronous functions with callbacks preventing other code
 
 ## Usage
 
+Instantiate a Deferred. The Deferred defines the type of return value:
 ```java
-
 Deferred<Boolean> deferred= new Deferred<>();
-deferred.resolve(true);
-        
+```
+Then you can define callbacks for your Deferred: 
+```java        
 deferred
     .then(new Deferred.Callback<Boolean, Void>() {
         @Override
@@ -29,7 +30,12 @@ deferred
             //fail();
         }
     });
-````
+```
+After that you can resolve or reject your Deferred:
+```java
+deferred.resolve(true)
+```
+When the resolve method is called the deferred will be resolved passing the value "true" as the result param in the result callback, so the assert will be true.
 
 ## API
 The Promise exposes only the Deferred methods needed to attach additional handlers or determine the state: *then*, *error* and the ones to change the state: *resolve*, *reject*:
@@ -49,7 +55,11 @@ Callbacks Objects:
 * Defered.ErrorCallback
 
 ## Use cases
-Promises became utils when using in conjunction with function which return Promises. This way it's easier to control process and is cleaner to calls to async methods. Examples in git.
+Promises became utils when using in conjunction with function which return promises to control async process and write cleaner calls to async methods. 
+
+Async callbacks
+
+Examples in git:
 
 ## Notes
 Documentation includes the following:
