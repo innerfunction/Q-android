@@ -4,9 +4,9 @@ Q-android is a Asynchronous Promise implementation for Android.
 
 This library brings the concept of [JS Promises](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#Constructor) to Android and it's similar to the [DeferredObject in jQuery](http://api.jquery.com/category/deferred-object/) and the [Android Deferred Object](https://github.com/CodeAndMagic/android-deferred-object).
 
-A Defered is a chainable utility object which can resgister multiple callbacks into callbacks queues, invoque callbacks queues, and relay the success or failure statete of any aysnc or async function. 
+A Defered is a chainable utility object which can register multiple callbacks into callbacks queues, invoque callbacks queues, and relay the success or failure statete of any aysnc or async function. 
 
-Defered allow to run asynchronous functions with callbacks preventing other code from interfering with the progress or status of its internal request. You can define callback chains using the *then* and *error* methods and have access to actual *resolve* and  *reject* (and *Defered.all*) methods which is useful to resolve Promises.
+Defered allow to run pieces of code preventing other code from interfering with the progress or status of its internal request. You can define callback chains using the *then* and *error* methods and have access to actual *resolve* and  *reject* (and *Defered.all*) methods which is useful to resolve Promises.
 
 ## Usage
 
@@ -31,7 +31,7 @@ deferred
         }
     });
 ```
-After that you can resolve or reject your Deferred, this is usefull when you want to resolve a deferred in an async call where you need to overwrite methods:
+Then you can resolve or reject your Deferred in any other part of the code.
 ```java
 // e.g. after an async operation
 if (error != null) {
@@ -40,16 +40,18 @@ if (error != null) {
     deferred.resolve(true);
 }
 ```
-If an "error" occures and the promise is rejected then the error() method in the Deferred gets call. If no error and the resolve method is called then the deferred will be resolved passing the value "true" as the result param in the result callback, so the assert will be true.
+In the code above if an "error" occurs and the promise is rejected then the error() method in the Deferred gets call. If no error and the resolve method is called then the deferred will be resolved passing the value "true" as the result param in the result callback, so the assert will be true.
 
 ## API
 The Promise exposes only the Deferred methods needed to attach additional handlers or determine the state: *then*, *error* and the ones to change the state: *resolve*, *reject*:
-* then()
-* error()
-* resolve()
-* reject()
 
-### then() continuations
+### Main API methods
+* then( callback )
+* error( callback )
+* resolve( value )
+* reject( value )
+
+#### then() ontinuations
 Using *then* we can chain promises, usefull to run secuantially async operations:
 ```java
     public Deferred<Boolean> promise1() {
@@ -67,6 +69,7 @@ Using *then* we can chain promises, usefull to run secuantially async operations
 ```
 The promise2 won't be resolved until promise1 has finished. promise3 won't be resolved until promise2 has finished.
 
+#### Deferred.all()
 This opens a lot of options on operations on Defered, like for example build a lists of promises and use the Deferred.app() method to resolve them, see an example:
 ```java
     List<Deferred<Boolean>> deferreds = new ArrayList<Deferred<Boolean>>();
