@@ -45,7 +45,7 @@ In the code above if an "error" occurs and the promise is rejected then the erro
 ## API
 The Promise exposes only the Deferred methods needed to attach additional handlers or determine the state: *then*, *error* and the ones to change the state: *resolve*, *reject*:
 
-### Main API methods
+Main API methods:
 * then( callback/promise )
 * error( callback/promise )
 * resolve( value )
@@ -89,7 +89,7 @@ The promise2 won't be resolved until promise1 has finished. promise3 won't be re
 Add a promise reject callback.
 
 #### Deferred.all()
-This opens a lot of options on operations on Defered, like for example build a lists of promises and use the Deferred.app() method to resolve them, see an example:
+This brings a lot of options on operations on defereds, like for example build a lists of promises and use the Deferred.app() method to resolve them, see an example:
 ```java
     List<Deferred<Boolean>> deferreds = new ArrayList<Deferred<Boolean>>();
     deferreds.add(promise1());
@@ -114,8 +114,8 @@ Promises became useful when defining function which return other promises. They 
 * manage error messages over a number of operations.
 * multiplatform: Port for iOS.
 
- ## Use cases
-
+## Use cases
+We will include to some links in code to show more examples.
 
 ## Notes
 Documentation includes the following:
