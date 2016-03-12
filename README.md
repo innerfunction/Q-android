@@ -69,16 +69,7 @@ The promise2 won't be resolved until promise1 has finished. promise3 won't be re
 
 This opens a lot of options on operations on Defered, like for example build a lists of promises and use the Deferred.app() method to resolve them, see an example:
 ```java
-   public Deferred<Boolean> promise1() {
-        return Deferred.defer( true );
-    }
-    public Deferred<Boolean> promise2() {
-        return Deferred.defer( false );
-    }
-    public Deferred<Boolean> promise3() {
-        return Deferred.defer( null );
-    }
-    final List<Deferred<Boolean>> deferreds = new ArrayList<Deferred<Boolean>>();
+    List<Deferred<Boolean>> deferreds = new ArrayList<Deferred<Boolean>>();
     deferreds.add(promise1());
     deferreds.add(promise2());
     deferreds.add(promise3());
