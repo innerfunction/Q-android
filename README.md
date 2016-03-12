@@ -32,11 +32,24 @@ deferred
 ````
 
 ## API
-The Promise exposes only the Deferred methods needed to attach additional handlers or determine the state: *then*, *error* and the ones to change the state: *resolve*, *reject*
+The Promise exposes only the Deferred methods needed to attach additional handlers or determine the state: *then*, *error* and the ones to change the state: *resolve*, *reject*:
+* then()
+* error()
+* resolve()
+* reject()
+
+Static methods:
+* Defered.defer(): 
+* Defered.all()
+
+Callbacks Objects:
+* Defered.ICallback: interface
+* Defered.Callback
+* Defered.AsyncCallback
+* Defered.ErrorCallback
 
 ## Use cases
-Promises became utils when using in conjunction with function which return Promises. This way it's easier to control process and is cleaner to calls to async methods. 
-
+Promises became utils when using in conjunction with function which return Promises. This way it's easier to control process and is cleaner to calls to async methods. Examples in git.
 
 ## Notes
 Documentation includes the following:
