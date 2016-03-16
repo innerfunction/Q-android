@@ -5,6 +5,7 @@ import android.test.AndroidTestCase;
 import org.junit.Test;
 
 import q.innerfunction.com.Deferred;
+import q.innerfunction.com.Q;
 
 /**
  * Created by javier on 11/03/2016.
@@ -96,11 +97,17 @@ public class SampleOne extends AndroidTestCase{
         };
 
         deferred.then(callback);
-
-
-
     }
 
+    @Test
+    public void staticCallsExamples(){
+
+        Q<Object> promise = new Q<>();
+        Q<Object> newPromise = Q.Promise.resolve( promise );
+
+        Q.Promise.reject("Error");
+
+    }
 
 
 }
