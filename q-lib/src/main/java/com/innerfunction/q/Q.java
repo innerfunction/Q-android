@@ -39,15 +39,10 @@ public class Q {
 
     /**
      * Return a promise which is resolved once all promises in the array argument have been resolved.
+     * Wait for all promises in a list to resolve or reject.
      * The resulting promise will resolve to an array containing the value result of each promise in the
      * array argument.
      * If any promise in the argument is rejected then the result is rejected with the first generated error.
-     */
-    /**
-     * Wait for all promises in a list to resolve or reject.
-     *
-     * @param deferreds
-     * @return
      */
     public static <R> Promise<List<R>> all(final List<Promise<R>> deferreds) {
         final Promise<List<R>> dresult = new Promise<List<R>>();
