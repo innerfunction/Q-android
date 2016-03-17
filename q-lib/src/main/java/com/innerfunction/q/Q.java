@@ -9,14 +9,14 @@ import java.util.List;
 public class Q {
 
     /** Return a promise resolving to the value argument. */
-    public static Q resolve(Object value){
-        Q promise = new Q();
+    public static Promise resolve(Object value){
+        Promise promise = new Promise();
         promise.resolve(value);
         return promise;
     };
     /** Return a rejected promise with the specified error. */
-    public static Q reject(Object error){
-        Q promise = new Q();
+    public static Promise reject(Object error){
+        Promise promise = new Promise();
         if ( error instanceof String ){
             promise.reject((String) error );
         }
@@ -26,8 +26,8 @@ public class Q {
         return promise;
     };
     /** Return a rejected promise with the specified error. */
-    public static Q reject(String error){
-        Q promise = new Q();
+    public static Promise reject(String error){
+        Promise promise = new Promise();
         promise.reject(error);
         return promise;
     };
@@ -38,13 +38,13 @@ public class Q {
      * array argument.
      * If any promise in the argument is rejected then the result is rejected with the first generated error.
      */
-    public static Q all(final List<Q> deferreds) {
-        return Q.all(deferreds);
+    public static Promise all(final List<Promise> deferreds) {
+        return Promise.all(deferreds);
     };
 
     /** Test whether an argument is a promise. */
     public static Boolean isPromise(Object obj){
-        return obj instanceof Q;
+        return obj instanceof Promise;
     };
 
     /**
@@ -58,8 +58,7 @@ public class Q {
         /**
          * Marker interface for callback types.
          */
-        public static interface ICallback<T, R> {
-        }
+        public static interface ICallback<T, R> {}
 
         /**
          * Callback for passing a deferred promise result.
