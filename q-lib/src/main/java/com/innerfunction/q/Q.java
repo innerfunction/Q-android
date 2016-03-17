@@ -5,32 +5,37 @@ import java.util.List;
 
 /**
  * Created by jloriente on 17/03/2016.
+ *
  */
 public class Q {
 
-    /** Return a promise resolving to the value argument. */
-    public static Promise resolve(Object value){
-        Promise promise = new Promise();
+    /**
+     * Return a promise resolving to the value argument.
+     */
+    public static <T> Promise<T> resolve(T value){
+        Promise<T> promise = new Promise<T>();
         promise.resolve(value);
         return promise;
-    };
+    }
+
     /** Return a rejected promise with the specified error. */
     public static Promise reject(Object error){
         Promise promise = new Promise();
         if ( error instanceof String ){
             promise.reject((String) error );
         }
-        if ( error instanceof Exception ){
+        else if ( error instanceof Exception ){
             promise.reject((Exception) error );
         }
         return promise;
-    };
+    }
+
     /** Return a rejected promise with the specified error. */
     public static Promise reject(String error){
         Promise promise = new Promise();
         promise.reject(error);
         return promise;
-    };
+    }
 
     /**
      * Return a promise which is resolved once all promises in the array argument have been resolved.
@@ -38,21 +43,44 @@ public class Q {
      * array argument.
      * If any promise in the argument is rejected then the result is rejected with the first generated error.
      */
-    public static Promise all(final List<Promise> deferreds) {
-        return Promise.all(deferreds);
-    };
+    /**
+     * Wait for all promises in a list to resolve or reject.
+     *
+     * @param deferreds
+     * @return
+     */
+    public static <R> Promise<List<R>> all(final List<Promise<R>> deferreds) {
+        final Promise<List<R>> dresult = new Promise<List<R>>();
+        final Promise.DeferredSet<R> dset = new Promise.DeferredSet<>();
+        for (Promise<R> deferred : deferreds) {
+            deferred
+                    .then(new Promise.Callback<R, Object>() {
+                        @Override
+                        public R result(R result) {
+                            dset.results.add(result);
+                            if (dset.results.size() == deferreds.size()) {
+                                dresult.resolve(dset.results);
+                            }
+                            return result;
+                        }
+                    })
+                    .error(new Promise.ErrorCallback() {
+                        @Override
+                        public void error(Exception e) {
+                            dresult.reject(e);
+                        }
+                    });
+        }
+        return dresult;
+    }
 
-    /** Test whether an argument is a promise. */
+
+        /** Test whether an argument is a promise. */
     public static Boolean isPromise(Object obj){
         return obj instanceof Promise;
     };
 
-    /**
-     * A simple deferred promise implementation.
-     * @author juliangoacher
-     *
-     * @param <T>
-     */
+
     public static class Promise<T> {
 
         /**
@@ -143,8 +171,7 @@ public class Q {
          */
         private boolean rejected;
 
-        public Promise() {
-        }
+        public Promise() {}
 
         public Promise(T result) {
             resolve(result);
@@ -165,36 +192,7 @@ public class Q {
             }
         }
 
-        /**
-         * Wait for all promises in a list to resolve or reject.
-         *
-         * @param deferreds
-         * @return
-         */
-        public static <R> Promise<List<R>> all(final List<Promise<R>> deferreds) {
-            final Promise<List<R>> dresult = new Promise<List<R>>();
-            final DeferredSet<R> dset = new DeferredSet<R>();
-            for (Promise<R> deferred : deferreds) {
-                deferred
-                        .then(new Callback<R, R>() {
-                            @Override
-                            public R result(R result) {
-                                dset.results.add(result);
-                                if (dset.results.size() == deferreds.size()) {
-                                    dresult.resolve(dset.results);
-                                }
-                                return result;
-                            }
-                        })
-                        .error(new ErrorCallback() {
-                            @Override
-                            public void error(Exception e) {
-                                dresult.reject(e);
-                            }
-                        });
-            }
-            return dresult;
-        }
+
 
         /**
          * Resolve the promise by passing a result.

@@ -2,13 +2,12 @@ package q.innerfunction.com.samplecode;
 
 import android.test.AndroidTestCase;
 
+import com.innerfunction.q.Q;
+
 import org.junit.Test;
 
-import q.innerfunction.com.Deferred;
-import q.innerfunction.com.Q;
-
 /**
- * Created by javier on 11/03/2016.
+ * Created by jloriente on 11/03/2016.
  */
 public class SampleOne extends AndroidTestCase{
 
@@ -20,8 +19,8 @@ public class SampleOne extends AndroidTestCase{
         // create a deferred
         //   if you want to show error call: reject()
         //   if you want to resolve the promise call: resolve()
-        public Deferred makeAsyncCall(){
-            Deferred deferred  = new Deferred();
+        public Q.Promise makeAsyncCall(){
+            Q.Promise deferred  = new Q.Promise<>();
             // Make async call and when success or error
             if ( success ){
                 deferred.resolve(true);
@@ -32,11 +31,11 @@ public class SampleOne extends AndroidTestCase{
             return deferred;
         }
         // Returning another defered
-        public Deferred getDetailsFromDB(){
-            Deferred deferred  = new Deferred();
-            final Deferred<Boolean> asyncDefer = makeAsyncCall();
+        public Q.Promise getDetailsFromDB(){
+            Q.Promise deferred  = new Q.Promise<>();
+            final Q.Promise<Boolean> asyncDefer = makeAsyncCall();
 
-            deferred.then(new Deferred.Callback() {
+            deferred.then(new Q.Promise.Callback() {
                 @Override
                 public Object result(Object result) {
                     // DO SOMETHING
@@ -46,11 +45,11 @@ public class SampleOne extends AndroidTestCase{
             });
             return deferred;
         };
-        public Deferred getImageFromLibrary(){
-            return Deferred.defer(true);
+        public Q.Promise getImageFromLibrary(){
+            return Q.Promise.defer(true);
         }
-        public Deferred downloadFileFromInternet(){
-            return Deferred.defer(true);
+        public Q.Promise downloadFileFromInternet(){
+            return Q.Promise.defer(true);
         }
     }
 
@@ -58,23 +57,23 @@ public class SampleOne extends AndroidTestCase{
     public void runSomething(){
         Controller controller = new Controller();
 
-        controller.makeAsyncCall().then(new Deferred.Callback() {
+        controller.makeAsyncCall().then(new Q.Promise.Callback() {
             @Override
             public Object result(Object result) {
                 return null;
             }
         });
 
-        // The then method can take Deferred, so chain things
+        // The then method can take Q.Promise, so chain things
 
         // Chain operations
         controller.makeAsyncCall()
-                .then((Deferred.ICallback) controller.getDetailsFromDB())
-                .then((Deferred.ICallback) controller.getImageFromLibrary())
-                .then((Deferred.ICallback) controller.downloadFileFromInternet());
+                .then((Q.Promise.ICallback) controller.getDetailsFromDB())
+                .then((Q.Promise.ICallback) controller.getImageFromLibrary())
+                .then((Q.Promise.ICallback) controller.downloadFileFromInternet());
 
         // Control errors
-        controller.getDetailsFromDB().error(new Deferred.ErrorCallback() {
+        controller.getDetailsFromDB().error(new Q.Promise.ErrorCallback() {
             @Override
             public void error(Exception e) {
                 //report the error
@@ -87,9 +86,9 @@ public class SampleOne extends AndroidTestCase{
     @Test
     public void exampleBasic1(){
         // Instantiate a deferred
-        Deferred<Boolean> deferred = new Deferred<Boolean>();
+        Q.Promise<Boolean> deferred = new Q.Promise<Boolean>();
 
-        Deferred.ICallback callback = new Deferred.Callback() {
+        Q.Promise.ICallback callback = new Q.Promise.Callback() {
             @Override
             public Object result(Object result) {
                 return null;
@@ -102,10 +101,13 @@ public class SampleOne extends AndroidTestCase{
     @Test
     public void staticCallsExamples(){
 
-        Q<Object> promise = new Q<>();
-        Q<Object> newPromise = Q.Promise.resolve( promise );
+        // old code
+        Q.Promise promise = new Q.Promise<>();
 
-        Q.Promise.reject("Error");
+        // TODO: How to call next
+        //Q.Promise newPromise = Q.resolve( promise );
+
+        Q.Promise rejectPromise = Q.reject("Error");
 
     }
 

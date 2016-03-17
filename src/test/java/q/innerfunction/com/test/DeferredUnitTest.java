@@ -3,7 +3,6 @@ package q.innerfunction.com.test;
 import org.junit.Test;
 
 import java.lang.Boolean;
-import java.util.Objects;
 
 import q.innerfunction.com.Deferred;
 

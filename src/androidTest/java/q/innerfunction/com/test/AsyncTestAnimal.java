@@ -5,25 +5,26 @@ import android.os.Looper;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.AndroidTestCase;
 
+import com.innerfunction.q.Q;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import q.innerfunction.com.Deferred;
 import q.innerfunction.com.q.testutils.Animal;
 
 @RunWith(AndroidJUnit4.class)
 public class AsyncTestAnimal extends AndroidTestCase{
     String testString = "teststring";
-    Deferred<String> deferredString;
-    Deferred<Object> deferredObject;
+    Q.Promise<String> deferredString;
+    Q.Promise<Object> deferredObject;
 
     @Test
     public void testAnimal() {
-        deferredObject = new Deferred<Object>();
+        deferredObject = new Q.Promise<>();
         final Animal monkey = new Animal();
         monkey.setName("Name");
 
-        deferredObject.then(new Deferred.Callback<Object, Object>() {
+        deferredObject.then(new Q.Promise.Callback<Object, Object>() {
             @Override
             public Object result(Object result) {
                 assertSame(monkey, (Animal) result);

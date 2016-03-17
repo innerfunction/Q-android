@@ -1,6 +1,6 @@
 package q.innerfunction.com.test;
 
-import android.test.AndroidTestCase;
+import com.innerfunction.q.Q;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,8 +8,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import q.innerfunction.com.Deferred;
 
 public class DeferredAllTest {
     ArrayList<Boolean> expectedresult;
@@ -22,29 +20,29 @@ public class DeferredAllTest {
         expectedresult.add(null);
     }
 
-    public Deferred<Boolean> promise1() {
-        return Deferred.defer( true );
+    public Q.Promise<Boolean> promise1() {
+        return Q.Promise.defer( true );
     }
-    public Deferred<Boolean> promise2() {
-        return Deferred.defer( false );
+    public Q.Promise<Boolean> promise2() {
+        return Q.Promise.defer( false );
     }
-    public Deferred<Boolean> promise3() {
-        return Deferred.defer( null );
+    public Q.Promise<Boolean> promise3() {
+        return Q.Promise.defer( null );
     }
 
     @Test
-    public void testDeferredALL() {
-        final List<Deferred<Boolean>> deferreds = new ArrayList<Deferred<Boolean>>();
+    public void testPromiseALL() {
+        final List<Q.Promise<Boolean>> deferreds = new ArrayList<Q.Promise<Boolean>>();
         deferreds.add(promise1());
         deferreds.add(promise2());
         deferreds.add(promise3());
 
         promise1()
-            .then((Deferred.ICallback<Boolean, Object>) promise2())
-            .then((Deferred.ICallback<Object, Object>) promise3());
+            .then((Q.Promise.ICallback<Boolean, Object>) promise2())
+            .then((Q.Promise.ICallback<Object, Object>) promise3());
 
-        final Deferred<Boolean> deferred = new Deferred<Boolean>();
-        deferred.then(new Deferred.Callback<Boolean, Object>() {
+        final Q.Promise<Boolean> deferred = new Q.Promise<Boolean>();
+        deferred.then(new Q.Promise.Callback<Boolean, Object>() {
             @Override
             public Object result(Boolean result) {
                 Assert.assertTrue(result);
@@ -53,8 +51,8 @@ public class DeferredAllTest {
         });
 
 
-        Deferred.all( deferreds )
-            .then(new Deferred.Callback<List<Boolean>, Object>() {
+        Q.all( deferreds )
+            .then(new Q.Promise.Callback<List<Boolean>, Object>() {
                 @Override
                 public Object result(List<Boolean> result) {
                     Assert.assertEquals(expectedresult, result);

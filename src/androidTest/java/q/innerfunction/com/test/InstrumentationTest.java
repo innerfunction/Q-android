@@ -4,18 +4,15 @@ import android.os.Handler;
 import android.os.Looper;
 import android.test.AndroidTestCase;
 
+import com.innerfunction.q.Q;
 
 import org.junit.Test;
-
 import java.util.concurrent.Semaphore;
-
-import q.innerfunction.com.BackgroundTaskRunner;
-import q.innerfunction.com.Deferred;
 
 public class InstrumentationTest extends AndroidTestCase{
     String testString = "teststring";
     Semaphore semaphore;
-    Deferred<String> deferredString;
+    Q.Promise<String> deferredString;
 
 
     @Test
@@ -85,9 +82,9 @@ public class InstrumentationTest extends AndroidTestCase{
     @Test
     public void testString() throws InterruptedException {
         semaphore = new Semaphore(1);
-        deferredString = new Deferred<String>();
+        deferredString = new Q.Promise<String>();
 
-        deferredString.then(new Deferred.Callback<String, Object>() {
+        deferredString.then(new Q.Promise.Callback<String, Object>() {
             @Override
             public String result(String result) {
                 assertEquals(result, testString);
@@ -115,8 +112,8 @@ public class InstrumentationTest extends AndroidTestCase{
     @Test
     public void testStringAsyncCall1() throws InterruptedException {
         final Semaphore semaphore = new Semaphore(1);
-        final Deferred<String> deferredString = new Deferred<String>();
-        deferredString.then(new Deferred.Callback<String, Object>() {
+        final Q.Promise<String> deferredString = new Q.Promise<String>();
+        deferredString.then(new Q.Promise.Callback<String, Object>() {
             @Override
             public String result(String result) {
                 assertEquals(result, testString);
@@ -125,21 +122,21 @@ public class InstrumentationTest extends AndroidTestCase{
             }
         });
 
-        BackgroundTaskRunner.run(new Runnable() {
-            @Override
-            public void run() {
-                Looper.prepare();
-                Handler h = new Handler();
-                h.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        deferredString.resolve(testString);
-                        Looper.myLooper().quit();
-                    }
-                }, 200);
-                Looper.loop();
-            }
-        });
+//        BackgroundTaskRunner.run(new Runnable() {
+//            @Override
+//            public void run() {
+//                Looper.prepare();
+//                Handler h = new Handler();
+//                h.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        deferredString.resolve(testString);
+//                        Looper.myLooper().quit();
+//                    }
+//                }, 200);
+//                Looper.loop();
+//            }
+//        });
         semaphore.acquire();
     }
 

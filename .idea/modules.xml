@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Q-android.iml" filepath="$PROJECT_DIR$/Q-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/Q-android.iml" filepath="$PROJECT_DIR$/Q-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/q-lib/q-lib.iml" filepath="$PROJECT_DIR$/q-lib/q-lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/q-library/q-library.iml" filepath="$PROJECT_DIR$/q-library/q-library.iml" />
     </modules>
   </component>

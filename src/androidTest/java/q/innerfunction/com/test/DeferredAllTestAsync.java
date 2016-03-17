@@ -5,6 +5,8 @@ import android.os.Looper;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.AndroidTestCase;
 
+import com.innerfunction.q.Q;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,8 +14,6 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Semaphore;
-
-import q.innerfunction.com.Deferred;
 
 @RunWith(AndroidJUnit4.class)
 public class DeferredAllTestAsync extends AndroidTestCase {
@@ -28,31 +28,31 @@ public class DeferredAllTestAsync extends AndroidTestCase {
         expectedresult.add(null);
     }
 
-    public Deferred<Boolean> promise1() {
-        return Deferred.defer( true );
+    public Q.Promise<Boolean> promise1() {
+        return Q.Promise.defer( true );
     }
-    public Deferred<Boolean> promise2() {
-        return Deferred.defer( false );
+    public Q.Promise<Boolean> promise2() {
+        return Q.Promise.defer( false );
     }
-    public Deferred<Boolean> promise3() {
-        return Deferred.defer( null );
+    public Q.Promise<Boolean> promise3() {
+        return Q.Promise.defer( null );
     }
 
     @Test
     public void testDeferredALL() throws InterruptedException {
-        final List<Deferred<Boolean>> deferreds = new ArrayList<Deferred<Boolean>>();
+        final List<Q.Promise<Boolean>> deferreds = new ArrayList<Q.Promise<Boolean>>();
         deferreds.add(promise1());
         deferreds.add(promise2());
         deferreds.add(promise3());
 
         semaphore = new Semaphore(1);
-        
-        final Deferred<Boolean> deferred = new Deferred<Boolean>();
 
-        Deferred.all( deferreds )
-            .then(new Deferred.AsyncCallback<List<Boolean>, Object>() {
+        final Q.Promise<Boolean> deferred = new Q.Promise<Boolean>();
+
+        Q.all( deferreds )
+            .then(new Q.Promise.AsyncCallback<List<Boolean>, Object>() {
                 @Override
-                public Deferred<Object> result(List<Boolean> result) {
+                public Q.Promise<Object> result(List<Boolean> result) {
                     assertEquals(expectedresult, result);
                     semaphore.release();
                     // return result;

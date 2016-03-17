@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Q<T> {
 
-    public static class Promise {
+    public static class Promise1 {
         /** Return a promise resolving to the value argument. */
         public static Q resolve(Object value){
             Q promise = new Q();
