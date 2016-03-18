@@ -1,4 +1,4 @@
-# Q-android: 
+
 
 Q-android is a Asynchronous Promise implementation for Android.
 
@@ -12,24 +12,24 @@ Defered allow to run pieces of code preventing other code from interfering with 
 
 Instantiate a Deferred. The Deferred defines the type of return value:
 ```java
-Deferred<Boolean> deferred= new Deferred<>();
+Q.Promise promise = new Q.Promise();
 ```
 Then you can define callbacks for your Deferred: 
 ```java        
-deferred
-    .then(new Deferred.Callback<Boolean, Void>() {
-        @Override
-        public Deferred<Boolean> result(Boolean result) {
-            assertTrue(result);
-            return result;
-        }
-    })
-    .error(new Deferred.ErrorCallback() {
-        @Override
-        public void error(Exception e) {
-            fail();
-        }
-    });
+promise.then( new Q.Promise.Callback<Boolean, Void>(){
+         @Override
+         public Void result(Boolean result) {
+             assertTrue(result);
+             return null;
+         }
+     }
+)
+.error(new Q.Promise.ErrorCallback() {
+    @Override
+    public void error(Exception e) {
+        fail();
+    }
+});
 ```
 Then you can resolve or reject your Deferred in any other part of the code.
 ```java

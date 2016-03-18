@@ -54,6 +54,25 @@ public class SampleOne extends AndroidTestCase{
     }
 
     @Test
+    public void docExample1(){
+        Q.Promise promise = new Q.Promise();
+        promise.then( new Q.Promise.Callback<Boolean, Void>(){
+                 @Override
+                 public Void result(Boolean result) {
+                     assertTrue(result);
+                     return null;
+                 }
+             }
+        )
+        .error(new Q.Promise.ErrorCallback() {
+            @Override
+            public void error(Exception e) {
+                fail();
+            }
+        });
+    }
+
+    @Test
     public void runSomething(){
         Controller controller = new Controller();
 
@@ -103,6 +122,11 @@ public class SampleOne extends AndroidTestCase{
 
         // old code
         Q.Promise promise = new Q.Promise<>();
+
+        // Resolve to boolean
+        Q.Promise promiseBoolan = Q.resolve(true);
+        // Resolve to a promise
+        Q.Promise promisePromise = Q.resolve(promise);
 
         // TODO: How to call next
         //Q.Promise newPromise = Q.resolve( promise );
