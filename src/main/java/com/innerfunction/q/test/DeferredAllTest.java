@@ -32,16 +32,12 @@ public class DeferredAllTest {
 
     @Test
     public void testPromiseALL() {
+        final Q.Promise<Boolean> deferred = new Q.Promise<Boolean>();
         final List<Q.Promise<Boolean>> deferreds = new ArrayList<Q.Promise<Boolean>>();
         deferreds.add(promise1());
         deferreds.add(promise2());
         deferreds.add(promise3());
 
-        promise1()
-            .then((Q.Promise.ICallback<Boolean, Object>) promise2())
-            .then((Q.Promise.ICallback<Object, Object>) promise3());
-
-        final Q.Promise<Boolean> deferred = new Q.Promise<Boolean>();
         deferred.then(new Q.Promise.Callback<Boolean, Object>() {
             @Override
             public Object result(Boolean result) {
@@ -49,7 +45,6 @@ public class DeferredAllTest {
                 return true;
             }
         });
-
 
         Q.all( deferreds )
             .then(new Q.Promise.Callback<List<Boolean>, Object>() {

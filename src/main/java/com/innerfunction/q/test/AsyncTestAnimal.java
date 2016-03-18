@@ -6,12 +6,10 @@ import android.support.test.runner.AndroidJUnit4;
 import android.test.AndroidTestCase;
 
 import com.innerfunction.q.Q;
-
+import com.innerfunction.q.testutils.Animal;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import com.innerfunction.q.testutils.Animal;
 
 @RunWith(AndroidJUnit4.class)
 public class AsyncTestAnimal extends AndroidTestCase{
@@ -23,7 +21,7 @@ public class AsyncTestAnimal extends AndroidTestCase{
     public void testAnimal() {
         deferredObject = new Q.Promise<>();
         final Animal monkey = new Animal();
-        monkey.setName("Name");
+        monkey.setName("Monkey name");
 
         deferredObject.then(new Q.Promise.Callback<Object, Object>() {
             @Override
@@ -44,6 +42,7 @@ public class AsyncTestAnimal extends AndroidTestCase{
         }, 200);
         Looper.loop();
     }
+
 
     // TODO: Review
     // BackgroundTaskRunner is not working, the run method is never run.

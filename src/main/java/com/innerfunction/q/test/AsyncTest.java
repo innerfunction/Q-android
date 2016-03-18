@@ -10,7 +10,6 @@ import com.innerfunction.q.Q;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.innerfunction.q.testutils.Animal;
 
 @RunWith(AndroidJUnit4.class)
 public class AsyncTest extends AndroidTestCase{
@@ -32,45 +31,19 @@ public class AsyncTest extends AndroidTestCase{
         // resolve the promise asyc
         Looper.prepare();
         new Handler().postDelayed( new Runnable() {
-                    @Override
-                    public void run() {
+                @Override
+                public void run() {
                     deferredString.resolve(testString);
                     Looper.myLooper().quit();
-                    }
                 }
-                , 300);
-        Looper.loop();
-    }
-
-    @Test
-    public void testAnimal() {
-        deferredObject = new Q.Promise<Object>();
-        final Animal monkey = new Animal();
-        monkey.setName("Name");
-
-        deferredObject.then(new Q.Promise.Callback<Object, Object>() {
-            @Override
-            public Object result(Object result) {
-                assertSame(monkey, (Animal) result);
-                assertEquals(monkey.getName(), ((Animal) result).getName());
-                return result;
             }
-        });
-
-        Looper.prepare();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                deferredObject.resolve(monkey);
-                Looper.myLooper().quit();
-            }
-        }, 200);
+            , 300);
         Looper.loop();
     }
 
     // TODO: Review
     // BackgroundTaskRunner is not working, the run method is never run.
-    // Possible causes: JUnit not sparking threads, or need to be called from UI thead
+    // Possible causes: JUnit not sparking threads, or need to be called from UI thread
 //    @Test
 //    public void testAsyncCall() throws InterruptedException {
 //        semaphore = new Semaphore(1);
