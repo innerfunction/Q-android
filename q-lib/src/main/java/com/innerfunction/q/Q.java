@@ -69,8 +69,7 @@ public class Q {
         return dresult;
     }
 
-
-        /** Test whether an argument is a promise. */
+    /** Test whether an argument is a promise. */
     public static Boolean isPromise(Object obj){
         return obj instanceof Promise;
     };
