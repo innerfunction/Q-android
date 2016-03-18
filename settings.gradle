@@ -1,1 +1,1 @@
-include ':q-library', ':q-lib'
+include ':q-lib'

@@ -18,7 +18,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "q.innerfunction.com.q_test_app"
+        applicationId "com.innerfunction.com.q"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
@@ -46,4 +46,5 @@ dependencies {
     androidTestCompile 'com.android.support.test:rules:0.4'
     // Set this dependency to build and run Espresso tests
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+    compile 'com.android.support.test:runner:0.4.1'
 }

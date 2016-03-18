@@ -10,7 +10,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/q-lib" />
-            <option value="$PROJECT_DIR$/q-library" />
           </set>
         </option>
       </GradleProjectSettings>
